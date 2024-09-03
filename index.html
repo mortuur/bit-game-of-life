@@ -3,17 +3,28 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="https://unpkg.com/tailwindcss@2.2.19/dist/tailwind.min.css" />
-    <title>Document</title>
-
+    <title>Simple Grid</title>
 </head>
 <body>
-    <div class="flex flex-center w-full h-32 bg-black">
-
-    </div>
-    <!-- grid -->
-    <div class="flex flex-center w-full h-2/4 bg-black border-black border-1">
-
-    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.1.9/p5.min.js" integrity="sha512-WIklPM6qPCIp6d3fSSr90j+1unQHUOoWDS4sdTiR8gxUTnyZ8S2Mr8e10sKKJ/bhJgpAa/qG068RDkg6fIlNFA==" crossorigin="anonymous"></script>
+    <script>
+        let boxWid = 20; 
+        let gridLn = 30; 
+        
+        function setup() { 
+            createCanvas(1500, 1500);
+            drawGrid();
+        }
+        
+        function drawGrid() {
+            for (let r = 0; r < gridLn; r++) {
+                for (let c = 0; c < gridLn; c++) {
+                    fill("white");
+                    stroke("black"); // Adding a stroke for grid lines
+                    rect(r * boxWid, c * boxWid, boxWid, boxWid);
+                }
+            }
+        }
+    </script>
 </body>
 </html>
