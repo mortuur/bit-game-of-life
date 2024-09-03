@@ -1,7 +1,7 @@
 $(function () {
     var welcomeSection = $('.welcome-section'),
         enterButton = $('.enter-button'),
-        targetUrl = '#'; 
+        targetUrl = 'index.html';  
 
     
     setTimeout(function () {
@@ -9,20 +9,25 @@ $(function () {
     }, 800);
 
     
+    function fadeOutAndRedirect() {
+        welcomeSection.addClass('content-hidden'); 
+        setTimeout(function () {
+            window.location.href = targetUrl; 
+        }, 1000); 
+    }
+
+    
     enterButton.on('click', function (e) {
-        e.preventDefault();
-        welcomeSection.addClass('content-hidden').fadeOut(function () {
-            window.location.href = targetUrl;
-        });
+        e.preventDefault(); 
+        fadeOutAndRedirect();
     });
 
     
     $(document).on('keydown', function (e) {
         if (e.key === 'Enter') {
             e.preventDefault(); 
-            welcomeSection.addClass('content-hidden').fadeOut(function () {
-                window.location.href = targetUrl;
-            });
+            fadeOutAndRedirect();
         }
     });
 });
+

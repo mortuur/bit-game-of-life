@@ -15,6 +15,14 @@ body {
     align-items: center;
     overflow: hidden;
 }
+.welcome-section {
+    transition: opacity 1s ease; 
+}
+
+.content-hidden {
+    opacity: 0; 
+    visibility: hidden; 
+}
 
 .welcome-section {
     position: absolute;
@@ -93,3 +101,4 @@ body {
 .welcome-section:not(.content-hidden) .enter-button {
     opacity: 1;
 }
+
