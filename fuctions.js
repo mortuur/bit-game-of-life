@@ -1,15 +1,17 @@
-// Grid instellingen
-const rows = 20;
-const cols = 20;
 
-// Grid-element in de HTML selecteren
+const cellSize = 20;
+const cols = Math.floor(window.innerWidth / cellSize);
+const rows = Math.floor(window.innerHeight / cellSize);
+
+
 const gridElement = document.getElementById('grid');
-gridElement.style.gridTemplateColumns = `repeat(${cols}, 20px)`;
+gridElement.style.gridTemplateColumns = `repeat(${cols}, ${cellSize}px)`;
 
-// 2D-array om de huidige staat van het grid bij te houden
+
 let grid = Array.from({ length: rows }, () => Array(cols).fill(0));
+let intervalId;
 
-// Initialiseer grid in de DOM
+
 function createGrid() {
     for (let row = 0; row < rows; row++) {
         for (let col = 0; col < cols; col++) {
@@ -22,13 +24,13 @@ function createGrid() {
     }
 }
 
-// Toggle cel status tussen dood en levend
+
 function toggleCellState(row, col) {
     grid[row][col] = grid[row][col] === 0 ? 1 : 0;
     renderGrid();
 }
 
-// Update het grid op basis van de 2D-array
+
 function renderGrid() {
     document.querySelectorAll('.cell').forEach((cell) => {
         const row = cell.dataset.row;
@@ -41,7 +43,7 @@ function renderGrid() {
     });
 }
 
-// Voeg klikbare cellen toe
+
 function addCellClickEvent() {
     document.querySelectorAll('.cell').forEach((cell) => {
         cell.addEventListener('click', () => {
@@ -52,6 +54,69 @@ function addCellClickEvent() {
     });
 }
 
-// Initialiseer het grid
+
+function nextGeneration() {
+    const nextGrid = grid.map(arr => [...arr]);
+
+    for (let row = 0; row < rows; row++) {
+        for (let col = 0; col < cols; col++) {
+            const cell = grid[row][col];
+            const neighbors = countNeighbors(row, col);
+
+            if (cell === 1 && (neighbors < 2 || neighbors > 3)) {
+                nextGrid[row][col] = 0;
+            } else if (cell === 0 && neighbors === 3) {
+                nextGrid[row][col] = 1;
+            }
+        }
+    }
+
+    grid = nextGrid;
+    renderGrid();
+}
+
+
+function countNeighbors(row, col) {
+    let sum = 0;
+    for (let i = -1; i <= 1; i++) {
+        for (let j = -1; j <= 1; j++) {
+            const newRow = (row + i + rows) % rows;
+            const newCol = (col + j + cols) % cols;
+            sum += grid[newRow][newCol];
+        }
+    }
+    sum -= grid[row][col];
+    return sum;
+}
+
+
+function startSimulation() {
+    intervalId = setInterval(nextGeneration, 100);
+}
+
+
+function stopSimulation() {
+    clearInterval(intervalId);
+}
+
+
+function resetGrid() {
+    grid = Array.from({ length: rows }, () => Array(cols).fill(0));
+    renderGrid();
+}
+
+
+function randomizeGrid() {
+    grid = Array.from({ length: rows }, () => Array(cols).fill(0).map(() => Math.random() > 0.7 ? 1 : 0));
+    renderGrid();
+}
+
+
 createGrid();
 addCellClickEvent();
+
+
+document.getElementById('start').addEventListener('click', startSimulation);
+document.getElementById('stop').addEventListener('click', stopSimulation);
+document.getElementById('reset').addEventListener('click', resetGrid);
+document.getElementById('randomize').addEventListener('click', randomizeGrid);
