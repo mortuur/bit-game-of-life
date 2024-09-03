@@ -22,7 +22,6 @@ function createGrid() {
     }
 }
 
-// Toggle cel status tussen dood en levend
 function toggleCellState(row, col) {
     grid[row][col] = grid[row][col] === 0 ? 1 : 0;
     renderGrid();
