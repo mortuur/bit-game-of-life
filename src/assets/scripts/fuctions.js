@@ -1,31 +1,30 @@
 const cellSize = 20;
+const cols = Math.floor(window.innerWidth / cellSize);
+const rows = Math.floor(window.innerHeight / cellSize);
+
 const gridElement = document.getElementById('grid');
 
-function calculateGridSize() {
-    const gridWidth = gridElement.clientWidth;
-    const gridHeight = gridElement.clientHeight;
-    const cols = Math.floor(gridWidth / cellSize);
-    const rows = Math.floor(gridHeight / cellSize);
-    return { cols, rows };
-}
+const gridWidth = gridElement.clientWidth;
+const gridHeight = gridElement.clientHeight;
 
-function setupGrid() {
-    const { cols, rows } = calculateGridSize();
-    gridElement.style.gridTemplateColumns = `repeat(${cols}, 1fr)`;
-    gridElement.style.gridTemplateRows = `repeat(${rows}, 1fr)`;
-    grid = Array.from({ length: rows }, () => Array(cols).fill(0));
-    createGrid(rows, cols);
-}
+const cellWidth = gridWidth / cols;
+const cellHeight = gridHeight / rows;
 
-function createGrid(rows, cols) {
-    gridElement.innerHTML = '';
+gridElement.style.gridTemplateColumns = `repeat(${cols}, ${cellWidth}px)`;
+gridElement.style.gridTemplateRows = `repeat(${rows}, ${cellHeight}px)`;
+
+let grid = Array.from({ length: rows }, () => Array(cols).fill(0));
+
+function createGrid() {
     for (let row = 0; row < rows; row++) {
         for (let col = 0; col < cols; col++) {
             const cell = document.createElement('div');
             cell.classList.add('cell');
             cell.dataset.row = row;
             cell.dataset.col = col;
-            cell.addEventListener('click', () => toggleCellState(row, col));
+            cell.addEventListener('click', () => {
+                toggleCellState(row, col);
+            });
             gridElement.appendChild(cell);
         }
     }
@@ -48,17 +47,10 @@ function renderGrid() {
     });
 }
 
-setupGrid();
-window.addEventListener('resize', setupGrid);
-
 function toggleGridVisibility() {
     document.getElementById('grid').classList.toggle('grid-hidden');
 }
 
-window.addEventListener('resize', updateGrid);
-
-updateGrid();
 createGrid();
 
 document.getElementById('toggleGrid').addEventListener('click', toggleGridVisibility);
-
