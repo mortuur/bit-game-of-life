@@ -28,6 +28,7 @@ html {
     grid-template-columns: repeat(auto-fill, 20px);
     grid-template-rows: repeat(auto-fill, 20px);
     z-index: 0;
+    overflow: hidden;
 }
 
 .cell {
@@ -62,7 +63,7 @@ header h1 {
     margin: 0;
     font-size: 28px;
     font-weight: blod;
-    color: #61dafb;
+    color: #282c32;
 }
 
 footer {
@@ -97,6 +98,10 @@ footer button:hover {
     transform: translateY(-2px);
 }
 
+footer button:active {
+    background-color: #1b8cd8;
+    transform: translateY(0);
+}
 .hidden {
     display: none;
 }
