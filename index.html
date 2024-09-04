@@ -1,13 +1,15 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Conway's Game of Life</title>
     <link rel="stylesheet" href="/src/assets/css/styling.css">
     <script src="/src/assets/scripts/fuctions.js" defer></script>
+    <script src="/src/assets/scripts/menu.js" defer></script>
     <link rel="shortcut icon" href="/src/assets/images/logo.png" type="image/x-icon">
-
+    <link href='https://unpkg.com/boxicons@2.1.1/css/boxicons.min.css' rel='stylesheet'>
 </head>
 
 <body>
@@ -16,14 +18,70 @@
     <header>
         <h1>Conway's Game of Life</h1>
     </header>
+    
+    <nav id="draggable-menu">
+        <div class="nav-content">
+            <div class="toggle-btn">
+                <i class='bx bx-menu'></i>
+            </div>
+            <span style="--i:1;">
+                <a href="#"><i class='bx bxs-home'></i></a>
+            </span>
+            <span style="--i:2;">
+                <a href="#"><i class='bx bxs-camera'></i></a>
+            </span>
+            <span style="--i:3;">
+                <a href="#"><i class='bx bxs-alarm'></i></a>
+            </span>
+            <span style="--i:4;">
+                <a href="#"><i class='bx bxs-map'></i></a>
+            </span>
+            <span style="--i:5;" id="music-button">
+                <a href="#"><i class='bx bx-play-circle' id="music-icon"></i></a>
+            </span>
+        </div>
+    </nav>
+
+    <audio id="background-music" src="/src/assets/_Kratos_ Skillibeng x Skeng Dancehall Type Beat (JordonLoud).mp3"></audio>
 
     <footer>
-        <button id="start">Start</button>
-        <button id="stop">Stop</button>
-        <button id="reset">Reset</button>
-        <button id="randomize">Randomize</button>
-        <button id="toggleGrid">Toggle Grid</button>
+        <button id="start">
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+            Start
+        </button>
+        <button id="stop">
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+            Stop
+        </button>
+        <button id="reset">
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+            Reset
+        </button>
+        <button id="randomize">
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+            Randomize
+        </button>
+        <button id="toggleGrid">
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+            Toggle Grid
+        </button>
     </footer>
-</body>
-</html>
 
+</body>
+
+</html>
