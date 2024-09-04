@@ -5,18 +5,26 @@ html {
     overflow: hidden;
     height: 100%;
     width: 100%;
-    position: relative;
+    font-family: 'Arial', sans-serif;
+    background-color: #282c32;
+    color: #ffffff;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
 
 .grid {
     display: grid;
-    gap: 1px;
-    background-color: #ccc;
+    gap: 2px;
+    background-color: #1c1e26;
+    border: 2px solid #61dafb;
+    border-radius: 10px;
     position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
+    top: 50px;
+    bottom:50px;
+    left: 10%;
+    right: 10%;
     grid-template-columns: repeat(auto-fill, 20px);
     grid-template-rows: repeat(auto-fill, 20px);
     z-index: 0;
@@ -25,11 +33,14 @@ html {
 .cell {
     width: 20px;
     height: 20px;
-    background-color: white;
+    background-color: #444b58;
+    transition: blackground-color 0.2s;
+    border-radius: 4px;
 }
 
 .cell.alive {
-    background-color: black;
+    background-color: #61dafb;
+    box-shadow: 0px 0px 10px #61dafb;
 }
 
 header {
