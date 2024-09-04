@@ -52,7 +52,7 @@ setupGrid();
 window.addEventListener('resize', setupGrid);
 
 function toggleGridVisibility() {
-    gridElement.classList.toggle('hidden');
+    document.getElementById('grid').classList.toggle('grid-hidden');
 }
 
 window.addEventListener('resize', updateGrid);
