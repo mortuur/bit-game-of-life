@@ -4,7 +4,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Conway's Game of Life</title>
-    <script src="/fuctions.js" defer></script>
     <style>
         body, html {
             margin: 0;
@@ -75,15 +74,22 @@
 
 <!-- Content section -->
 <body>
-    <div id="grid" class="grid"></div>
-    <script src="functions.js"></script>
+    <div>
+        <p>Instructions: Click on the cells to make them alive or dead. Hold the mouse button to make them blink.</p>
+    </div>
+    <div class="w-screen h-full">
+        <div id="game-of-life" class=""></div>
+    </div>
+    <div class="z-10">
+        <button id="start">Start</button>
+        <button id="stop">Stop</button>
+        <button id="reset">Reset</button>
+        <button id="randomize">Randomize</button>
+    </div>
 </body>
 
 <!-- Footer section -->
-<footer>
-    <button id="start">Start</button>
-    <button id="stop">Stop</button>
-    <button id="reset">Reset</button>
-    <button id="randomize">Randomize</button>
-</footer>
+
 </html>
+
+<script src="scr/assets/scripts/fuctions.js"></script>
