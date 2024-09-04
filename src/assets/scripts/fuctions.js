@@ -51,7 +51,7 @@ function renderGrid() {
 }
 
 function toggleGridVisibility() {
-    gridElement.classList.toggle('hidden');
+    document.getElementById('grid').classList.toggle('grid-hidden');
 }
 
 createGrid();

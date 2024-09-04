@@ -21,11 +21,19 @@ html {
     grid-template-rows: repeat(auto-fill, 20px);
     z-index: 0;
 }
+.grid-hidden {
+    background-color: #fff !important;
+}
 
 .cell {
     width: 20px;
     height: 20px;
     background-color: white;
+    border: red;
+}
+
+.cell-invisible {
+    background-color: blue;
 }
 
 .cell.alive {
