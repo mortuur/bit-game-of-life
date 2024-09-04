@@ -20,11 +20,6 @@ html {
     background-color: #1c1e26;
     border: 2px solid #61dafb;
     border-radius: 10px;
-    position: absolute;
-    top: 50px;
-    bottom:50px;
-    left: 10%;
-    right: 10%;
     grid-template-columns: repeat(auto-fill, 20px);
     grid-template-rows: repeat(auto-fill, 20px);
     z-index: 0;
