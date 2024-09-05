@@ -4,15 +4,12 @@ const rows = Math.floor(window.innerHeight / cellSize);
 
 const gridElement = document.getElementById('grid');
 
-// Bereken de breedte en hoogte van de container waarin de grid zich bevindt
 const gridWidth = gridElement.clientWidth;
 const gridHeight = gridElement.clientHeight;
 
-// Bepaal de breedte en hoogte van de cellen op basis van het aantal kolommen en rijen
 const cellWidth = gridWidth / cols;
 const cellHeight = gridHeight / rows;
 
-// Stel de grid-template kolommen en rijen in op basis van de berekende cellafmetingen
 gridElement.style.gridTemplateColumns = `repeat(${cols}, ${cellWidth}px)`;
 gridElement.style.gridTemplateRows = `repeat(${rows}, ${cellHeight}px)`;
 
@@ -105,4 +102,3 @@ function resetGrid() {
 createGrid();
 
 document.getElementById('toggleGrid').addEventListener('click', toggleGridVisibility);
-document.getElementById('togglestart').addEventListener('click', startGame);
