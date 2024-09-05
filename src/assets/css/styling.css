@@ -40,23 +40,26 @@ html {
     background-color: black;
 }
 
-header,
+header {
+    transform: translateY(-100%);
+    opacity: 0;
+    transition: transform 0.5s ease, opacity 0.5s ease;
+}
+
 footer {
-    background-color: transparent;
-    box-shadow: none;
-    transition: transform 0.5s ease-in-out, opacity 0.5s ease-in-out;
+    transform: translateY(100%);
+    opacity: 0;
+    transition: transform 0.5s ease, opacity 0.5s ease;
+}
+
+header:hover {
     transform: translateY(0);
     opacity: 1;
 }
 
-header.hidden {
-    transform: translateY(-100%);
-    opacity: 0;
-}
-
-footer.hidden {
-    transform: translateY(100%);
-    opacity: 0;
+footer:hover {
+    transform: translateY(0);
+    opacity: 1;
 }
 
 body:hover header {
@@ -277,3 +280,4 @@ footer button:hover span:nth-child(4) {
 #music-button a {
     background-color: #f44336;
 }
+
