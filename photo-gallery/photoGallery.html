@@ -15,11 +15,24 @@
         .active {
             display: block;
         }
+
+        #slider{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
     </style>
 </head>
-<body class="bg-gray-100 flex items-center justify-center h-screen">
+<body class="bg-gray-100  h-screen">
+    <nav class="bg-gray-800 p-4">
+        <div class="container mx-auto ">
+            <ul class="flex space-x-4">
+                <li><a href="index.html" class="text-gray-300 hover:text-white">Go to Home</a></li>
+            </ul>
+        </div>
+    </nav>
 
-    <div class="relative w-full max-w-2xl overflow-hidden">
+    <div class="relative w-full max-w-2xl py-2 overflow-hidden ">
         <!-- Slider container -->
         <div id="slider" class="relative">
             <!-- Slide 1 -->
@@ -29,7 +42,7 @@
 
             <!-- Slide 2 -->
             <div class="slide">
-                <img src="/img.jpg" class="w-full h-auto object-cover">
+                <img src="/img2.jpg" class="w-full h-auto object-cover">
             </div>
 
             <!-- Slide 3 -->
@@ -37,7 +50,6 @@
                 <img src="/img.jpg" class="w-full h-auto object-cover">
             </div>
 
-            <!-- Navigation buttons -->
             <button id="prev" class="absolute top-1/2 left-4 bg-gray-700 text-white px-3 py-2 rounded-full transform -translate-y-1/2">❮</button>
             <button id="next" class="absolute top-1/2 right-4 bg-gray-700 text-white px-3 py-2 rounded-full transform -translate-y-1/2">❯</button>
         </div>
