@@ -1,10 +1,5 @@
-
 const nav = document.getElementById('draggable-menu');
 const toggleBtn = nav.querySelector(".toggle-btn");
-let musicPlaying = false;
-const musicIcon = document.getElementById('music-icon');
-
-const music = document.getElementById('background-music');
 
 let isDragging = false;
 let startX, startY, initialTop, initialLeft;
@@ -47,15 +42,17 @@ document.addEventListener("mouseleave", () => {
     document.body.style.userSelect = ''; 
 });
 
+const music = document.getElementById('background-music');
 const musicButton = document.getElementById('music-button');
+const musicIcon = document.getElementById('music-icon');
+let musicPlaying = false; 
+
 musicButton.addEventListener('click', () => {
     if (musicPlaying) {
-        
         music.pause();
         musicIcon.classList.replace('bx-pause-circle', 'bx-play-circle');
         musicPlaying = false;
     } else {
-        
         music.play();
         musicIcon.classList.replace('bx-play-circle', 'bx-pause-circle');
         musicPlaying = true;
