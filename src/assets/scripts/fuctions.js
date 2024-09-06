@@ -41,17 +41,10 @@ function renderGrid() {
     });
 }
 
-function toggleGridVisibility() {
-    document.getElementById('grid').classList.toggle('grid-hidden');
-}
-// start game
-
 function startGame() {
     gameRules();
     setInterval(gameRules, 1000);
 }
-
-// game rules
 
 function gameRules() {
     for (let row = 0; row < rows; row++) {
@@ -94,5 +87,15 @@ function resetGrid() {
 }
 
 createGrid();
+
+function toggleGridVisibility() {
+    document.getElementById('grid').classList.toggle('grid-hidden');
+}
+
+document.getElementById('toggleGrid').addEventListener('click', toggleGridVisibility);
+
+function toggleGridVisibility() {
+    document.getElementById('grid').classList.toggle('grid-hidden');
+}
 
 document.getElementById('toggleGrid').addEventListener('click', toggleGridVisibility);
