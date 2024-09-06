@@ -12,6 +12,7 @@ let grid = Array.from({ length: rows }, () => Array(cols).fill(0));
 function createGrid() {
     for (let row = 0; row < rows; row++) {
         for (let col = 0; col < cols; col++) {
+            console.log((row + col).toString());
             const cell = document.createElement('div');
             cell.classList.add('cell');
             cell.dataset.row = row;
@@ -24,21 +25,67 @@ function createGrid() {
     }
 }
 
-function toggleCellState(row, col) {
-    grid[row][col] = grid[row][col] === 0 ? 1 : 0;
-    renderGrid();
+// function toggleCellState(row, col) {
+//     grid[row][col] = grid[row][col] === 0 ? 1 : 0;
+//     renderGrid();
+// }
+
+function start() {
+    for (let row = 0; row < rows; row++) {
+        for (let col = 0; col < cols; col++) {
+            if (grid[row][col] === 1) {
+                checkCellState(row, col);
+                // setInterval(start, 100);
+            }
+        }
+    }
 }
 
-function renderGrid() {
-    document.querySelectorAll('.cell').forEach((cell) => {
-        const row = cell.dataset.row;
-        const col = cell.dataset.col;
-        if (grid[row][col] === 1) {
-            cell.classList.add('alive');
-        } else {
-            cell.classList.remove('alive');
+function toggleCellState(row, col) {
+    const cellElement = document.querySelector(
+        `[data-row="${row}"][data-col="${col}"]`,
+    );
+    cellElement.classList.toggle('alive');
+    grid[row][col] = grid[row][col] === 0 ? 1 : 0;
+}
+
+/**
+ * Controleert de buurcellen van een cel en past de regels van Conway's Game of Life toe.
+ * @param {number} row - De rij van de cel.
+ * @param {number} col - De kolom van de cel.
+ */
+function checkCellState(row, col) {
+    const neighbors = [
+        // checkt boven
+        [row - 1, col - 1],
+        [row - 1, col + 1],
+        [row - 1, col],
+        // check midden
+        [row, col - 1],
+        [row, col + 1],
+        // check onder
+        [row + 1, col - 1],
+        [row + 1, col + 1],
+        [row + 1, col],
+    ];
+
+    let aliveNeighbors = 0;
+
+    for (const neighbor of neighbors) {
+        if (grid[neighbor[0]][neighbor[1]] === 1) {
+            aliveNeighbors++;
         }
-    });
+    }
+
+    if (aliveNeighbors < 2) {
+        toggleCellState(row, col);
+        return;
+    }
+
+    if (aliveNeighborsi === 3) {
+        console.log('alive');
+        toggleCellState(row, col);
+    }
 }
 
 function startGame() {
@@ -88,8 +135,7 @@ function resetGrid() {
 
 createGrid();
 
-function toggleGridVisibility() {
-    document.getElementById('grid').classList.toggle('grid-hidden');
-}
-
-document.getElementById('toggleGrid').addEventListener('click', toggleGridVisibility);
+document
+    .getElementById('toggleGrid')
+    .addEventListener('click', toggleGridVisibility);
+document.getElementById('start').addEventListener('click', start);

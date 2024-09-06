@@ -1,0 +1,5 @@
+binarie 
+
+zet de grid om naar een buffer en zet de buffer om naar een bit array zo dat je op true kan checken
+
+200? 40x40? 
