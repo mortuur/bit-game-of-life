@@ -1,4 +1,4 @@
-# Game of Life in PHP
+# Game of Life
 
 Dit is een implementatie van Conway's Game of Life in PHP. Het spel simuleert het gedrag van cellen in een 2D-grid volgens een reeks eenvoudige regels. Elke cel kan levend of dood zijn, en de staat van elke cel in de volgende generatie hangt af van het aantal levende buren.
 
