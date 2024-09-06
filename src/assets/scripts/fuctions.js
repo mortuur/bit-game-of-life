@@ -4,14 +4,8 @@ const rows = Math.floor(window.innerHeight / cellSize);
 
 const gridElement = document.getElementById('grid');
 
-const gridWidth = gridElement.clientWidth;
-const gridHeight = gridElement.clientHeight;
-
-const cellWidth = gridWidth / cols;
-const cellHeight = gridHeight / rows;
-
-gridElement.style.gridTemplateColumns = `repeat(${cols}, ${cellWidth}px)`;
-gridElement.style.gridTemplateRows = `repeat(${rows}, ${cellHeight}px)`;
+gridElement.style.gridTemplateColumns = `repeat(${cols}, ${cellSize}px)`;
+gridElement.style.gridTemplateRows = `repeat(${rows}, ${cellSize}px)`;
 
 let grid = Array.from({ length: rows }, () => Array(cols).fill(0));
 
