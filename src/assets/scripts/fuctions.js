@@ -4,17 +4,8 @@ const rows = Math.floor(window.innerHeight / cellSize);
 
 const gridElement = document.getElementById('grid');
 
-// Bereken de breedte en hoogte van de container waarin de grid zich bevindt
-const gridWidth = gridElement.clientWidth;
-const gridHeight = gridElement.clientHeight;
-
-// Bepaal de breedte en hoogte van de cellen op basis van het aantal kolommen en rijen
-const cellWidth = gridWidth / cols;
-const cellHeight = gridHeight / rows;
-
-// Stel de grid-template kolommen en rijen in op basis van de berekende cellafmetingen
-gridElement.style.gridTemplateColumns = `repeat(${cols}, ${cellWidth}px)`;
-gridElement.style.gridTemplateRows = `repeat(${rows}, ${cellHeight}px)`;
+gridElement.style.gridTemplateColumns = `repeat(${cols}, ${cellSize}px)`;
+gridElement.style.gridTemplateRows = `repeat(${rows}, ${cellSize}px)`;
 
 let grid = Array.from({ length: rows }, () => Array(cols).fill(0));
 
@@ -99,6 +90,54 @@ function checkCellState(row, col) {
 
 function toggleGridVisibility() {
     document.getElementById('grid').classList.toggle('grid-hidden');
+}
+// start game
+
+function startGame() {
+    gameRules();
+    setInterval(gameRules, 1000);
+}
+
+// game rules
+
+function gameRules() {
+    for (let row = 0; row < rows; row++) {
+        for (let col = 0; col < cols; col++) {
+            const cell = grid[row][col];
+            const neighbors = countNeighbors(row, col);
+            if (cell === 1) {
+                if (neighbors < 2 || neighbors > 3) {
+                    grid[row][col] = 0;
+                }
+            } else if (neighbors === 3) {
+                grid[row][col] = 1;
+            }
+        }
+    }
+    renderGrid();
+    }
+
+function countNeighbors(row, col) {
+    let count = 0;
+    for (let i = -1; i <= 1; i++) {
+        for (let j = -1; j <= 1; j++) {
+            const x = row + i;
+            const y = col + j;
+            if (x >= 0 && x < rows && y >= 0 && y < cols && (i !== 0 || j !== 0)) {
+                count += grid[x][y];
+            }
+        }
+    }
+    return count;
+}
+
+function resetGrid() {
+    for (let row = 0; row < rows; row++) {
+        for (let col = 0; col < cols; col++) {
+            grid[row][col] = 0;
+        }
+    }
+    renderGrid();
 }
 
 createGrid();
