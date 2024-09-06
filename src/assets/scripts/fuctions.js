@@ -93,9 +93,3 @@ function toggleGridVisibility() {
 }
 
 document.getElementById('toggleGrid').addEventListener('click', toggleGridVisibility);
-
-function toggleGridVisibility() {
-    document.getElementById('grid').classList.toggle('grid-hidden');
-}
-
-document.getElementById('toggleGrid').addEventListener('click', toggleGridVisibility);
