@@ -1,29 +1,192 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Conway's Game of Life</title>
     <link rel="stylesheet" href="/src/assets/css/styling.css">
-    <!-- <script src="/src/assets/scripts/fuctions.js" defer></script> -->
-    <script src="src/assets/scripts/main.js" defer></script>
+    <link rel="stylesheet" href="/src/assets/css/side-menu.css">
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <script src="/src/assets/scripts/side-menu.js" defer></script>
+    <script src="/src/assets/scripts/fuctions.js" defer></script>
+    <script src="/src/assets/scripts/menu.js" defer></script>
+    <script src="/src/assets/scripts/screenshot.js" defer></script>
+    <script src="/src/assets/scripts/interaction.js" defer></script>
     <link rel="shortcut icon" href="/src/assets/images/logo.png" type="image/x-icon">
+    <link href='https://unpkg.com/boxicons@2.1.1/css/boxicons.min.css' rel='stylesheet'>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/0.5.0-beta4/html2canvas.min.js"></script>
 
 </head>
 
-<body>
-    <header>
+<body class="bg-gray-100">
+    <div id="grid" class="grid"></div>
+
+    <header class="fixed top-0 left-0 w-full text-white p-4">
         <h1>Conway's Game of Life</h1>
     </header>
-    <canvas id="main-canvas"></canvas>
-    
-    <footer>
-        <button id="start-button">Start</button>
-        <button id="stop">Stop</button>
-        <button id="reset">Reset</button>
-        <button id="random-button">Randomize</button>
-        <button id="toggleGrid">Toggle Grid</button>
-    </footer>
-</body>
-</html>
 
+<div id="screenshot-modal" class="modal fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center hidden">
+    <div class="modal-content bg-white p-6 rounded-lg w-2/3 70-w-screen-lg overflow-auto">
+        <span class="close cursor-pointer text-right text-gray-500 hover:text-red-500">&times;</span>
+        <h2 class="text-2xl font-bold mb-4 flex justify-center">Screenshot</h2>
+        <img src="" alt="Screenshot" class="w-full h-auto rounded-lg mb-4">
+        <div class="flex justify-center mb-4">
+            <input type="text" id="image-description" placeholder="Add a description..."
+                class="w-full border p-2 rounded">
+        </div>
+        <div class="flex justify-around">
+            <button id="save-gallery" class="bg-blue-500 text-white p-2 rounded">Save to Gallery</button>
+            <button id="discard" class="bg-red-500 text-white p-2 rounded">Discard</button>
+            <button id="download" class="bg-green-500 text-white p-2 rounded">Download</button>
+        </div>
+    </div>
+</div>
+
+<div class="side-menu fixed top-0 left-0 h-full bg-white bg-opacity-70 shadow-md shadow-black/10">
+    <div class="menu-content p-6">
+        <h2 class="text-xl mb-4 flex justify-center hover:underline">Menu</h2>
+
+        <div class="setting speed-setting mb-4">
+            <label for="speed-slider" class="flex justify-center hover:underline">Speed</label>
+            <input type="range" id="speed-slider" min="1" max="10" value="5" class="w-full mt-2">
+        </div>
+
+        <div class="setting color-setting mb-4">
+            <label for="color-picker" class="flex justify-center hover:underline">Cell Color</label>
+            <input type="color" id="color-picker" value="#000000" class="w-full mt-2">
+        </div>
+
+        <div class="setting explanation-setting mb-4 flex justify-center">
+            <button id="open-modal" class="hover:underline text-black py-2 rounded"><i class='bx bx-info-circle'></i>
+                Explanation</button>
+        </div>
+
+        <div class="setting gallery-setting flex justify-center">
+            <a href="/src/assets/pages/gallery.html" class="hover:underline rounded"><i class='bx bx-images'></i>
+                Gallery</a>
+        </div>
+    </div>
+</div>
+
+<div id="explanation-modal" class="modal fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center hidden">
+    <div class="modal-content bg-white p-6 rounded-lg w-2/3 70-w-screen-lg 70-w-screen-lg overflow-auto">
+        <span class="close cursor-pointer text-right text-gray-500 hover:text-red-500">&times;</span>
+        <h2 class="text-2xl font-bold mb-4 flex justify-center">Conway's Game of Life - Explanation</h2>
+        <div class="modal-body">
+            <p>Conway's Game of Life is a cellular automaton devised by British mathematician John Horton Conway in
+                1970. It is a zero-player game, meaning that its progression is determined by its initial state and
+                the rules of the game, with no further input required from players once it starts.</p>
+
+            <div class="flex justify-center">
+                <img src="/src/assets/images/john.jpg" alt="John Horton Conway" class="w-80 h-80 rounded-lg mb-4">
+            </div>
+
+            <p>The Game of Life is played on a two-dimensional grid of square cells. Each cell can be in one of two
+                states: alive or dead. The state of the grid evolves in discrete steps, according to a set of simple
+                rules:</p>
+            <ul class="list-disc list-inside ml-4">
+                <li><strong>Survival:</strong> A cell that is alive and has two or three living neighbors stays
+                    alive.</li>
+                <li><strong>Birth:</strong> A cell that is dead and has exactly three living neighbors becomes
+                    alive.</li>
+                <li><strong>Death:</strong> In all other cases, the cell dies or remains dead. This includes cells
+                    with fewer than two living neighbors (under-population) or more than three living neighbors
+                    (over-population).</li>
+            </ul>
+
+            <p>These rules can lead to a variety of interesting and often unpredictable patterns. Some patterns,
+                such as still lifes, oscillators, and spaceships, repeat or move in predictable ways, while others
+                can grow and evolve in complex patterns.</p>
+
+            <div class="flex justify-center">
+                <img src="/src/assets/images/game-of-life-feature.gif" alt="Example of Conway's Game of Life"
+                    class="w-80 h-80 rounded-lg mb-4">
+            </div>
+            <p>John Conway's Game of Life has inspired significant interest and study in the fields of mathematics,
+                computer science, and theoretical biology. It provides an elegant example of how complex systems and
+                behaviors can emerge from simple rules. Researchers have used it to explore topics like
+                self-replication, pattern formation, and the concept of artificial life.</p>
+
+            <p>Conway himself was known for his contributions to various areas of mathematics, including
+                combinatorial game theory and geometry. His work on the Game of Life has had a lasting impact on
+                both theoretical and practical applications, demonstrating the power of cellular automata in
+                modeling and understanding complex systems.</p>
+
+            <p>The Game of Life is also notable for its use in popular culture and computational demonstrations. It
+                has been used to illustrate principles of emergent behavior and has appeared in various forms of
+                media, including video games and educational software.</p>
+        </div>
+    </div>
+</div>
+
+    <nav id="draggable-menu">
+        <div class="nav-content">
+            <div class="toggle-btn">
+                <i class='bx bx-menu'></i>
+            </div>
+            <span style="--i:1;">
+                <a href="#"><i class='bx bxs-camera'></i></a>
+            </span>
+            <span style="--i:2;">
+                <a href="#"><i class='bx bxs-fast-forward-circle'></i></a>
+            </span>
+            <span style="--i:3;">
+                <a href="#"><i class='bx bxs-alarm'></i></a>
+            </span>
+            <span style="--i:4;">
+                <a href="#"><i class='bx bxs-user-check'></i></a>
+            </span>
+            <span style="--i:5;" id="music-button">
+                <a href="#"><i class='bx bx-play-circle' id="music-icon"></i></a>
+            </span>
+        </div>
+    </nav>
+
+    <audio id="background-music" src="/src/assets/music/Elliot Cole - 01 - Conway's Game of Life music.mp3"></audio>
+    <button id="music-button">
+        <i id="music-icon" class="bx bx-play-circle"></i>
+    </button>
+
+
+    <footer>
+        <button id="start">
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+            Start
+        </button>
+        <button id="stop">
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+            Stop
+        </button>
+        <button id="reset">
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+            Reset
+        </button>
+        <button id="randomize">
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+            Randomize
+        </button>
+        <button id="toggleGrid">
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+            Toggle Grid
+        </button>
+    </footer>
+
+</body>
+
+</html>
