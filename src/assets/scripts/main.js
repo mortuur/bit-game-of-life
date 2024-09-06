@@ -170,7 +170,7 @@ renderGrid();
 
 // Start knop voor de simulatie
 document.querySelector('#start').addEventListener('click', () => {
-    setInterval(simulateActiveCells, 500); // Simuleer elke 500 ms
+    setInterval(simulateActiveCells, 200); // Simuleer elke 500 ms
 });
 
 // Knop voor willekeurige startconfiguratie (random miezer)
