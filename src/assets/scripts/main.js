@@ -140,11 +140,11 @@ window.addEventListener('mousedown', (event) => {
 renderGrid();
 
 // Start knop voor de simulatie
-document.querySelector('#start-button').addEventListener('click', () => {
+document.querySelector('#start').addEventListener('click', () => {
     setInterval(simulateActiveCells, 500); // Simuleer elke 500 ms
 });
 
 // Knop voor willekeurige startconfiguratie (random miezer)
-document.querySelector('#random-button').addEventListener('click', () => {
+document.querySelector('#randomize').addEventListener('click', () => {
     randomMiezer(0.3); // Willekeurig 30% van de cellen activeren
 });
