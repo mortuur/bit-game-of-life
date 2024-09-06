@@ -20,6 +20,13 @@ const addActiveCell = (x, y) => {
     activeCells.push([x, y]);
 };
 
+const drawInvisibleCell = (x, y) => {
+    ctx.beginPath();
+    ctx.rect(x * CELL_SIZE, y * CELL_SIZE, CELL_SIZE, CELL_SIZE);
+    ctx.fillStyle = 'white'; // Kleur voor dode cellen
+    ctx.fill();
+};
+
 const drawEmptyCell = (x, y) => {
     ctx.beginPath();
     ctx.strokeStyle = 'lightgray';
@@ -103,6 +110,9 @@ const simulateActiveCells = () => {
     });
 };
 
+const getResult = (x, y) => x + y;
+
+
 // Functie om een willekeurige startconfiguratie (random miezer) te genereren
 const randomMiezer = (percentage = 0.2) => {
     renderGrid();
@@ -116,6 +126,25 @@ const randomMiezer = (percentage = 0.2) => {
         }
     }
 };
+
+const clearLines = () => {
+    console.log('test');
+    for (let x = 0; x < MAX_X; x++) {
+        for (let y = 0; y < MAX_Y; y++) {
+            if (isCellActive(x, y)) continue;
+            drawInvisibleCell(x, y);
+        }
+    }
+};
+const resetLine = (y) => {
+    for (let x = 0; x < MAX_X; x++) {
+        if (!isCellActive(x, y)) {
+            drawCell(x, y); // Teken de cel opnieuw
+        }
+    }
+};
+
+console.log('k');
 
 window.addEventListener('mousedown', (event) => {
     const mouseX = event.clientX;
@@ -148,3 +177,11 @@ document.querySelector('#start').addEventListener('click', () => {
 document.querySelector('#randomize').addEventListener('click', () => {
     randomMiezer(0.3); // Willekeurig 30% van de cellen activeren
 });
+document.querySelector('#toggleGrid').addEventListener('click', () => {
+    clearLines(); // Willekeurig 30% van de cellen activeren
+});
+
+document.querySelector('#stop').addEventListener('click', () => {
+    randomMiezer(0.3); // Willekeurig 30% van de cellen activeren
+});
+

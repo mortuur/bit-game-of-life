@@ -10,7 +10,7 @@ html {
 
 .grid {
     display: grid;
-    gap: 1px;
+    gap: 1px;   
     background-color: #ccc;
     position: absolute;
     top: 0;
