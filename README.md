@@ -33,7 +33,7 @@ Het spel wordt gespeeld op een eindige 2D-raster van cellen. Elke cel heeft acht
 
 ## Voorbeelden
 
-![example]([https://assets.digitalocean.com/articles/alligator/boo.svg](https://lh3.googleusercontent.com/C6HkzTZOrAtlLPkY6tHcUQMX1BoahTG_Gt4ueO_G0dV-J6dqSbT7ElD6Ddg_vg2cNI1D9cIBQMUNaPWIkPrqGVpbE9RY_9Q3Fn0k)"")
+![]([https://assets.digitalocean.com/articles/alligator/boo.svg](https://lh3.googleusercontent.com/C6HkzTZOrAtlLPkY6tHcUQMX1BoahTG_Gt4ueO_G0dV-J6dqSbT7ElD6Ddg_vg2cNI1D9cIBQMUNaPWIkPrqGVpbE9RY_9Q3Fn0k) "wow")
 
 ## Licentie
 
